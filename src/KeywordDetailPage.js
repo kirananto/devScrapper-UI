@@ -72,6 +72,12 @@ export class KeywordDetailPage extends React.Component {
       <div className="body-content">
         <div className="body-heading">
           {decodeURIComponent(this.props.keyword)}{" "}
+          {this.state.keywordInfo.totalCompletedRepos ===
+          this.state.keywordInfo.totalReposCount ? (
+            <sup className="super-completed">Completed</sup>
+          ) : (
+            <sup className="super-in-progress">In Progress</sup>
+          )}
           <div
             onClick={() => window.location.reload()}
             style={{ fontSize: "22px", float: "right", cursor: "pointer" }}
@@ -149,8 +155,6 @@ export class KeywordDetailPage extends React.Component {
             </PieChart>
           </div>
         </div>
-        ) : (<div> no info </div>
-        )}
       </div>
     ) : (
       <div className="body-content">

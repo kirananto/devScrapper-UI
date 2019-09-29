@@ -177,3 +177,21 @@
 .keyword_individual_firstline_item_button:focus {
   outline: none;
 }
+
+.super-completed {
+  font-size: 12px;
+  background: #498c45;
+  padding: 5px 15px;
+  font-weight: bold;
+  margin-left: 1rem;
+  border-radius: 5px;
+}
+
+.super-in-progress {
+  font-size: 12px;
+  background: #d6b619;
+  padding: 5px 15px;
+  font-weight: bold;
+  margin-left: 1rem;
+  border-radius: 5px;
+}

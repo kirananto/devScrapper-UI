@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosInstance } from "./App";
+import noContent from "./assets/noContent.png";
 import { KeywordsBox } from "./KeywordsBox";
 export class KeywordsSection extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export class KeywordsSection extends React.Component {
     });
   };
   render() {
-    return (
+    return this.state.keywords.length > 0 ? (
       <div className="body-content">
         <div className="body-heading">Keywords</div>
         <div className="items-container">
@@ -29,6 +30,10 @@ export class KeywordsSection extends React.Component {
             <KeywordsBox key={item.keyword} item={item} />
           ))}
         </div>
+      </div>
+    ) : (
+      <div className="body-content">
+        <img src={noContent} />
       </div>
     );
   }

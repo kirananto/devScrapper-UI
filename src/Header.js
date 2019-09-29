@@ -36,7 +36,7 @@ export class Header extends React.Component {
             onChange={this.handleTextInput}
           />
           <button className="search_button" onClick={this.handleExecution}>
-            MINE
+            SEARCH
           </button>
         </div>
       </header>)

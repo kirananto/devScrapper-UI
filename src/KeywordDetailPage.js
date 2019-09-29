@@ -78,12 +78,12 @@ export class KeywordDetailPage extends React.Component {
           ) : (
             <sup className="super-in-progress">In Progress</sup>
           )}
-          <div
+          <button
             onClick={() => window.location.reload()}
-            style={{ fontSize: "22px", float: "right", cursor: "pointer" }}
+            className="keyword_individual_firstline_item_button refresh_button"
           >
             Refresh
-          </div>
+          </button>
         </div>
         <div className="keyword_main_container">
           <div className="keyword_individual">

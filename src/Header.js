@@ -26,7 +26,7 @@ export class Header extends React.Component {
       };
     render () {
         return (<header className="App-header">
-        <img src={logo} style={{ marginBottom: '1rem'}}/>
+        <img alt="devscrapper" onClick={() =>  window.location.replace('/')} src={logo} style={{ marginBottom: '1rem', cursor:'pointer'}}/>
         <div className="search_box">
           <input
           placeholder="Enter keywords to mine for"

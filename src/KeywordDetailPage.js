@@ -1,17 +1,32 @@
 import React from "react";
 import { axiosInstance } from "./App";
 import { format } from "date-fns";
+import { PieChart, Pie,Cell,Tooltip } from 'recharts';
+
+const COLORS = ['#68A364', '#0088FE', '#FFBB28', '#FF8042'];
+
 export class KeywordDetailPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      keywordInfo: undefined
+      keywordInfo: undefined,
+      data: [{ name: 'Work Email', value: 333},{ name: 'Personal Email', value: 100}]
     };
   }
 
   componentDidMount() {
     this.fetchKeywords();
     setInterval(this.fetchKeywords, 1000);
+    axiosInstance.get(`/keywords/${this.props.keyword}/emails`).then(async result => {
+      const totalCount = result.data.length
+      const personalEmails = await result.data.filter((item => {
+        return item.email.includes('gmail') || item.email.includes('yahoo')|| item.email.includes('outlook')|| item.email.includes('hotmail')
+      })).length
+      const workEmails = totalCount - personalEmails
+      this.setState({
+        data: [{ name: 'Work Email', value: workEmails},{ name: 'Personal Email', value: personalEmails}]
+      })
+    })
   }
 
   fetchKeywords = () => {
@@ -36,7 +51,7 @@ export class KeywordDetailPage extends React.Component {
   render() {
     return (
       <div className="body-content">
-        <div className="body-heading">{this.props.keyword}</div>
+        <div className="body-heading">{decodeURIComponent(this.props.keyword)} <div onClick={() => window.location.reload()} style={{ fontSize: '22px', float: 'right', cursor: 'pointer'}}>Refresh</div></div>
         {this.state.keywordInfo ? (
           <div className="keyword_main_container">
             <div className="keyword_individual">
@@ -59,6 +74,17 @@ export class KeywordDetailPage extends React.Component {
                 </div>
               </div>
             </div>
+              <div className="keyword_individual" style={{ display: 'grid'}}>
+                Work email vs free email
+                <PieChart style={{ justifySelf: 'center'}} width={230} height={250}>
+  <Pie data={this.state.data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8">
+  {
+            this.state.data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+          }
+  </Pie>
+  <Tooltip />
+  </PieChart>
+                </div>
           </div>
         ) : (
           <div> no info </div>

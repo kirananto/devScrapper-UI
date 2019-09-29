@@ -119,6 +119,7 @@
   margin-top: 2rem;
   display: grid;
   grid-template-columns: auto auto;
+  grid-gap: 2rem;
 }
 
 .keyword_individual {

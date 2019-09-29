@@ -5,12 +5,10 @@ import { formatDistance} from 'date-fns'
 export const KeywordsBox = ({ item }) => (
   <div className="item">
     <div
-      class={`percentage c100 p${(
-        item.totalCompletedRepos / item.totalReposCount
-      ).toFixed(0)} small green`}
+      class={`percentage c100 p${((item.totalCompletedRepos / item.totalReposCount) * 100).toFixed(0)} small green`}
     >
       <span>
-        {(item.totalCompletedRepos / item.totalReposCount).toFixed(0)}%
+        {((item.totalCompletedRepos / item.totalReposCount) * 100).toFixed(0)}%
       </span>
       <div class="slice">
         <div class="bar"></div>
